@@ -24,10 +24,10 @@ export default function TaskForm({ initial, projectId, members = [], onSave, onC
 
       let result;
       if (initial) {
-        const { data } = await api.put(`/tasks/${initial._id}`, payload);
+        const { data } = await api.put(`/api/tasks/${initial._id}`, payload);
         result = data;
       } else {
-        const { data } = await api.post('/tasks', payload);
+        const { data } = await api.post('/api/tasks', payload);
         result = data;
       }
       onSave(result);

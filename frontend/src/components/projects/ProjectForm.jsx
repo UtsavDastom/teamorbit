@@ -37,10 +37,10 @@ export default function ProjectForm({ initial, onSave, onCancel }) {
     try {
       let result;
       if (initial) {
-        const { data } = await api.put(`/projects/${initial._id}`, form);
+        const { data } = await api.put(`/api/projects/${initial._id}`, form);
         result = data;
       } else {
-        const { data } = await api.post('/projects', form);
+        const { data } = await api.post('/api/projects', form);
         result = data;
       }
       onSave(result);
