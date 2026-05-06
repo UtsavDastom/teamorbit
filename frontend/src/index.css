@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a3d #111118;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track { background: #111118; }
+*::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
+
+body {
+  background-color: #0a0a0f;
+  color: #e2e2f0;
+  font-family: 'Syne', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+@layer components {
+  .orbit-card {
+    @apply bg-orbit-card border border-orbit-border rounded-xl;
+  }
+
+  .orbit-input {
+    @apply w-full bg-orbit-surface border border-orbit-border text-orbit-text rounded-lg px-4 py-2.5
+    placeholder-orbit-sub focus:outline-none focus:border-orbit-accent transition-colors duration-200;
+  }
+
+  .orbit-btn-primary {
+    @apply bg-orbit-accent hover:bg-orbit-accentHover text-white font-semibold
+    px-5 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-2 justify-center
+    disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .orbit-btn-ghost {
+    @apply bg-transparent hover:bg-orbit-muted text-orbit-sub hover:text-orbit-text
+    px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2;
+  }
+
+  .orbit-badge {
+    @apply text-xs font-mono font-medium px-2.5 py-0.5 rounded-full;
+  }
+
+  .stat-card {
+    @apply orbit-card p-5 flex flex-col gap-3 hover:border-orbit-muted transition-colors duration-200;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 106, 247, 0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(124, 106, 247, 0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.35s ease forwards;
+}
+
+.glow-pulse {
+  animation: pulse-glow 2s infinite;
+}
