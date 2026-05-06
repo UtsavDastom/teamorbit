@@ -7,7 +7,7 @@ import Modal from '../components/common/Modal';
 import StatusBadge from '../components/common/StatusBadge';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import EmptyState from '../components/common/EmptyState';
-import ProjectForm from '../components/api/projects/ProjectForm';
+import ProjectForm from '../components/projects/ProjectForm';
 
 export default function ProjectsPage() {
   const { isAdmin } = useAuth();
