@@ -11,7 +11,7 @@ export default function UsersPage() {
   const [deleting, setDeleting] = useState(null);
 
   useEffect(() => {
-    api.get('/users')
+    api.get('/api/users')
       .then(r => setUsers(r.data))
       .catch(() => toast.error('Failed to load users'))
       .finally(() => setLoading(false));
