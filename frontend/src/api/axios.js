@@ -6,7 +6,24 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('orbit_token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  if (
+    config.url &&
+    !config.url.startsWith('/api') &&
+    (
+      config.url.startsWith('/auth') ||
+      config.url.startsWith('/projects') ||
+      config.url.startsWith('/tasks') ||
+      config.url.startsWith('/users')
+    )
+  ) {
+    config.url = `/api${config.url}`;
+  }
+
   return config;
 });
 
@@ -18,6 +35,7 @@ api.interceptors.response.use(
       localStorage.removeItem('orbit_user');
       window.location.href = '/login';
     }
+
     return Promise.reject(error);
   }
 );
