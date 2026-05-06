@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import Modal from '../components/common/Modal';
 import StatusBadge, { PriorityBadge } from '../components/common/StatusBadge';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import TaskForm from '../components/api/tasks/TaskForm';
+import TaskForm from '../components/tasks/TaskForm';
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
@@ -21,14 +21,14 @@ export default function ProjectDetailPage() {
   const fetchData = async () => {
     try {
       const [projRes, tasksRes] = await Promise.all([
-        api.get(`/api/projects/${id}`),
-        api.get(`/api/tasks?projectId=${id}`),
+        api.get(`/projects/${id}`),
+        api.get(`/tasks?projectId=${id}`),
       ]);
       setProject(projRes.data);
       setTasks(tasksRes.data);
     } catch {
       toast.error('Failed to load project');
-      navigate('/api/projects');
+      navigate('/projects');
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ export default function ProjectDetailPage() {
 
   const handleStatusChange = async (taskId, status) => {
     try {
-      const { data } = await api.put(`/api/tasks/${taskId}`, { status });
+      const { data } = await api.put(`/tasks/${taskId}`, { status });
       setTasks(prev => prev.map(t => t._id === taskId ? data : t));
       toast.success('Status updated');
     } catch {
@@ -61,7 +61,7 @@ export default function ProjectDetailPage() {
   const handleDeleteTask = async (taskId) => {
     if (!confirm('Delete this task?')) return;
     try {
-      await api.delete(`/api/tasks/${taskId}`);
+      await api.delete(`/tasks/${taskId}`);
       setTasks(prev => prev.filter(t => t._id !== taskId));
       toast.success('Task deleted');
     } catch {
@@ -84,7 +84,7 @@ export default function ProjectDetailPage() {
   return (
     <div className="space-y-6 fade-up">
       {/* Back */}
-      <Link to="/api/projects" className="inline-flex items-center gap-2 text-orbit-sub hover:text-orbit-text text-sm transition-colors">
+      <Link to="/projects" className="inline-flex items-center gap-2 text-orbit-sub hover:text-orbit-text text-sm transition-colors">
         <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         All Projects
       </Link>
