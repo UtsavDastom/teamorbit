@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('orbit_token');
       if (token) {
         try {
-          const { data } = await api.get('/api/auth/me');
+          const { data } = await api.get('/auth/me');
           setUser(data);
           localStorage.setItem('orbit_user', JSON.stringify(data));
         } catch {
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const { data } = await api.post('/api/auth/login', { email, password });
+    const { data } = await api.post('/auth/login', { email, password });
     localStorage.setItem('orbit_token', data.token);
     localStorage.setItem('orbit_user', JSON.stringify(data));
     setUser(data);
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password, role) => {
-    const { data } = await api.post('/api/auth/register', { name, email, password, role });
+    const { data } = await api.post('/auth/register', { name, email, password, role });
     localStorage.setItem('orbit_token', data.token);
     localStorage.setItem('orbit_user', JSON.stringify(data));
     setUser(data);

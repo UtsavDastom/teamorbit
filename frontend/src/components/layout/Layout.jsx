@@ -5,8 +5,8 @@ import toast from 'react-hot-toast';
 
 const navItems = [
   { to: '/dashboard', icon: GridIcon, label: 'Dashboard' },
-  { to: '/api/projects', icon: FolderIcon, label: 'Projects' },
-  { to: '/api/tasks', icon: CheckIcon, label: 'Tasks' },
+  { to: '/projects', icon: FolderIcon, label: 'Projects' },
+  { to: '/tasks', icon: CheckIcon, label: 'Tasks' },
 ];
 
 function GridIcon() {

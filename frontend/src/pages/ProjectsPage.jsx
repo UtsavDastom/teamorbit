@@ -19,7 +19,7 @@ export default function ProjectsPage() {
 
   const fetchProjects = async () => {
     try {
-      const { data } = await api.get('/api/projects');
+      const { data } = await api.get('/projects');
       setProjects(data);
     } catch {
       toast.error('Failed to load projects');
@@ -51,7 +51,7 @@ export default function ProjectsPage() {
     if (!confirm('Delete this project and all its tasks?')) return;
     setDeleting(id);
     try {
-      await api.delete(`/api/projects/${id}`);
+      await api.delete(`/projects/${id}`);
       setProjects(prev => prev.filter(p => p._id !== id));
       toast.success('Project deleted');
     } catch {
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
               <div className="h-1 rounded-full" style={{ background: project.color || '#7c6af7' }} />
 
               <div className="flex items-start justify-between gap-2">
-                <Link to={`/api/projects/${project._id}`} className="font-bold text-orbit-text hover:text-orbit-accent transition-colors line-clamp-2">
+                <Link to={`/projects/${project._id}`} className="font-bold text-orbit-text hover:text-orbit-accent transition-colors line-clamp-2">
                   {project.title}
                 </Link>
                 <StatusBadge status={project.status} />

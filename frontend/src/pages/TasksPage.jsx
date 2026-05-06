@@ -13,7 +13,7 @@ export default function TasksPage() {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    api.get('/api/tasks')
+    api.get('/tasks')
       .then(r => setTasks(r.data))
       .catch(() => toast.error('Failed to load tasks'))
       .finally(() => setLoading(false));
@@ -21,7 +21,7 @@ export default function TasksPage() {
 
   const handleStatusChange = async (taskId, status) => {
     try {
-      const { data } = await api.put(`/api/tasks/${taskId}`, { status });
+      const { data } = await api.put(`/tasks/${taskId}`, { status });
       setTasks(prev => prev.map(t => t._id === taskId ? data : t));
       toast.success('Status updated');
     } catch {
@@ -32,7 +32,7 @@ export default function TasksPage() {
   const handleDelete = async (taskId) => {
     if (!confirm('Delete this task?')) return;
     try {
-      await api.delete(`/api/tasks/${taskId}`);
+      await api.delete(`/tasks/${taskId}`);
       setTasks(prev => prev.filter(t => t._id !== taskId));
       toast.success('Task deleted');
     } catch {

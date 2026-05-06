@@ -41,8 +41,8 @@ export default function DashboardPage() {
     const fetchData = async () => {
       try {
         const [statsRes, tasksRes] = await Promise.all([
-          api.get('/api/tasks/stats'),
-          api.get('/api/tasks?limit=5'),
+          api.get('/tasks/stats'),
+          api.get('/tasks?limit=5'),
         ]);
         setStats(statsRes.data);
         setRecentTasks(tasksRes.data.slice(0, 5));
@@ -140,7 +140,7 @@ export default function DashboardPage() {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-orbit-text">Recent Tasks</h2>
-          <Link to="/api/tasks" className="text-sm text-orbit-accent hover:underline font-mono">View all →</Link>
+          <Link to="/tasks" className="text-sm text-orbit-accent hover:underline font-mono">View all →</Link>
         </div>
         {recentTasks.length === 0 ? (
           <div className="orbit-card p-8 text-center text-orbit-sub">No tasks yet. Start by creating a project.</div>
