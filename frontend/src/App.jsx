@@ -5,9 +5,9 @@ import Layout from './components/layout/Layout';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
-import ProjectsPage from './pages/projectsPage';
+import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
-import TasksPage from '././pages/tasksPage';
+import TasksPage from './pages/TasksPage';
 import UsersPage from './pages/UsersPage';
 import LoadingSpinner from './components/common/LoadingSpinner';
 
