@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('orbit_token');
       if (token) {
         try {
-          const { data } = await api.get('/auth/me');
+          const { data } = await api.get('/api/auth/me');
           setUser(data);
           localStorage.setItem('orbit_user', JSON.stringify(data));
         } catch {
